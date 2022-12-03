@@ -1,5 +1,6 @@
 use std::env;
 use std::fs;
+
 fn get_char_score(common: String) -> usize {
     let alphabet: Vec<char> = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         .chars()
