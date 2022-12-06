@@ -1,5 +1,5 @@
 FROM rust:1.61 as builder
-WORKDIR /usr/src/day01
+WORKDIR /usr/src/aoc
 COPY . .
 RUN cargo install --path .
 
