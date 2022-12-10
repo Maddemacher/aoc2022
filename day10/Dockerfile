@@ -1,5 +1,7 @@
-FROM alpine:latest
+FROM denoland/deno
 COPY . /solution
 WORKDIR /solution
 
-CMD ./solution.sh
+RUN deno cache main.ts
+
+CMD ["deno", "run", "--allow-read", "main.ts"]
