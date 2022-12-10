@@ -51,8 +51,28 @@ function doPartOne(instructions: Instruction[]) {
   const instructionsToProcess = addVoids(instructions)
   const signalStrengths = [20, 60, 100, 140, 180, 220].map(cycle => getSignalStrength(cycle, instructionsToProcess))
 
+  console.log(signalStrengths.reduce((acc, val) => acc + val, 0))
+}
 
-  console.log(signalStrengths.reduce((acc, val) => acc + val), 0)
+function doPartTwo(instructions: Instruction[]) {
+  let register = 1;
+  const screen: string[][] = Array.from({ length: 6 }).map(() => [])
+  const instructionsToProcess = addVoids(instructions)
+
+  for (let cycle = 0; cycle < 240; cycle++) {
+    const row = Math.floor(cycle / 40);
+    const column = cycle - row * 40;
+
+    if (Math.abs(column - register) <= 1) {
+      screen[row][column] = "#"
+    } else {
+      screen[row][column] = "."
+    }
+
+    register = register + (instructionsToProcess[cycle].value ?? 0)
+  }
+
+  screen.map(row => row.join("")).forEach(row => console.log(row))
 }
 
 
@@ -62,7 +82,7 @@ export function main(part: string) {
   if (part === "part1") {
     doPartOne(instructions);
   } else {
-    // doPartTwo(instructions);
+    doPartTwo(instructions);
   }
 }
 
